@@ -3,8 +3,6 @@ package backtracking
 import "fmt"
 
 func SolveSudoku() {
-	grid := [9][9]int{}
-	findCombinations(grid, 0, 0)
 }
 
 func AllSudokuCombination() {
