@@ -2,10 +2,16 @@ package backtracking
 
 import "fmt"
 
-func SudokuSolver() {
+func SolveSudoku() {
 	grid := [9][9]int{}
 	findCombinations(grid, 0, 0)
 }
+
+func AllSudokuCombination() {
+	grid := [9][9]int{}
+	findCombinations(grid, 0, 0)
+}
+
 func findCombinations(grid [9][9]int, row, col int) {
 	if row == 9 {
 		printSudoku(grid)
@@ -75,8 +81,34 @@ func getSquare(row, col int) (int, int) {
 
 func printSudoku(grid [9][9]int) {
 	for i := range grid {
-		fmt.Println(grid[i])
+		if i != 0 && i%3 == 0 {
+			fmt.Println("------+-------+------")
+		}
+		for j := 0; j < 9; j++ {
+			if j%3 == 0 && j != 0 {
+				fmt.Print("| ")
+			}
+			fmt.Printf("%d ", grid[i][j])
+		}
+		fmt.Println()
 	}
 	fmt.Println()
 	fmt.Println()
 }
+
+/*
+func printSudoku2(grid [9][9]int) {
+	for i := 0; i < 9; i++ {
+		if i%3 == 0 && i != 0 {
+			fmt.Println("------+-------+------")
+		}
+		for j := 0; j < 9; j++ {
+			if j%3 == 0 && j != 0 {
+				fmt.Print("| ")
+			}
+			fmt.Print(grid[i][j], " ")
+		}
+		fmt.Println()
+	}
+}
+*/

@@ -8,5 +8,5 @@ func main() {
 	//dynamicProgramming.TestBackPack()
 	//dynamicProgramming.TestMaxEqualsChars()
 	//dynamicProgramming.TestMaxSubString()
-	backtracking.SudokuSolver()
+	backtracking.AllSudokuCombination()
 }
