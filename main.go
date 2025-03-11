@@ -1,6 +1,9 @@
 package main
 
-import "test-go/backtracking"
+import (
+	"fmt"
+	"test-go/slidingDoors"
+)
 
 func main() {
 	//dijkstra.Test()
@@ -8,5 +11,7 @@ func main() {
 	//dynamicProgramming.TestBackPack()
 	//dynamicProgramming.TestMaxEqualsChars()
 	//dynamicProgramming.TestMaxSubString()
-	backtracking.AllSudokuCombination()
+	//backtracking.AllSudokuCombination()
+	result := slidingDoors.NumberOfSubstrings("abcabc")
+	fmt.Println(result)
 }
