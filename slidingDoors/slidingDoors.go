@@ -4,14 +4,10 @@ func NumberOfSubstrings(s string) int {
 	strLen := len(s)
 	result := 0
 	for size := 3; size <= strLen; size++ {
-		letters := map[byte]int{}
+		letters := [3]int{}
 		for right := 0; right < strLen; right++ {
 			chRight := s[right]
-			if _, exists := letters[chRight]; exists {
-				letters[chRight]++
-			} else {
-				letters[chRight] = 1
-			}
+			letters[chRight-'a']++
 			if right < size-1 {
 				continue
 			}
@@ -19,21 +15,15 @@ func NumberOfSubstrings(s string) int {
 				result++
 			}
 			chLeft := s[right+1-size]
-			letters[chLeft]--
+			letters[chLeft-'a']--
 		}
 	}
 	return result
 }
 
-func isValidSubString(letters map[byte]int) bool {
-	if val, exists := letters['a']; !exists || val < 1 {
-		return false
+func isValidSubString(letters [3]int) bool {
+	if letters[0] > 0 && letters[1] > 0 && letters[2] > 0 {
+		return true
 	}
-	if val, exists := letters['b']; !exists || val < 1 {
-		return false
-	}
-	if val, exists := letters['c']; !exists || val < 1 {
-		return false
-	}
-	return true
+	return false
 }
