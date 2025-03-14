@@ -2,6 +2,7 @@ package dynamicProgramming
 
 import (
 	"fmt"
+	"test-go/utility"
 )
 
 type Item struct {
@@ -37,7 +38,7 @@ func maxEqualsChars(s1, s2 string) int {
 			if i1 > 0 {
 				oldValue1 = grid[i1-1][i2]
 			}
-			oldValue := maxInt(oldValue2, oldValue1)
+			oldValue := mathUtility.MaxInt(oldValue2, oldValue1)
 			if ch1 == ch2 {
 				oldValue++
 			}
@@ -88,7 +89,7 @@ func backPackProblem(items []Item, maxSize int) int {
 				newValue += grid[iC-1][empty]
 				oldValue = grid[iC-1][i]
 			}
-			grid[iC][i] = maxInt(newValue, oldValue)
+			grid[iC][i] = mathUtility.MaxInt(newValue, oldValue)
 		}
 	}
 	return grid[rows-1][cols-1]
@@ -112,11 +113,4 @@ func maxMatrix(matrix [][]int) int {
 		}
 	}
 	return maximus
-}
-
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

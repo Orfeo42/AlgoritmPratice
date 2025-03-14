@@ -1,18 +1,15 @@
 package main
 
-import "test-go/minZeroArray"
+import (
+	"fmt"
+	"test-go/dynamicProgramming"
+)
 
 func main() {
-	//dijkstra.Test()
-	//breadthFirst.TestBreadthFirst()
-	//dynamicProgramming.TestBackPack()
-	//dynamicProgramming.TestMaxEqualsChars()
-	//dynamicProgramming.TestMaxSubString()
-	//backtracking.AllSudokuCombination()
-	//result := slidingDoors.NumberOfSubstrings("abcabc")
-	//fmt.Println(result)
-	nums := []int{2, 0, 2}
-	queries := [][]int{{0, 2, 1}, {0, 2, 1}, {1, 1, 3}}
-	minZeroArray.MinZeroArray(nums, queries)
-
+	//result1 := dynamicProgramming.MinimumCoinsRecursive(13, []int{2, 4, 5})
+	//fmt.Println(result1)
+	//result2 := dynamicProgramming.MinimumCoins(13, []int{2, 4, 5})
+	//fmt.Println(result2)
+	result3 := dynamicProgramming.HowManyPaths(100, 100)
+	fmt.Println(result3)
 }
