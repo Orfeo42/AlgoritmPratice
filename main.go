@@ -6,10 +6,8 @@ import (
 )
 
 func main() {
-	//result1 := dynamicProgramming.MinimumCoinsRecursive(13, []int{2, 4, 5})
-	//fmt.Println(result1)
-	//result2 := dynamicProgramming.MinimumCoins(13, []int{2, 4, 5})
-	//fmt.Println(result2)
-	result3 := dynamicProgramming.HowManyPaths(100, 100)
-	fmt.Println(result3)
+	result := dynamicProgramming.LongestCommonSubsequence("Pippo", "Pippo")
+	fmt.Println(result)
+	result2 := dynamicProgramming.LongestCommonSubToString("Pippo", "Pippo")
+	fmt.Println(result2)
 }
