@@ -1,7 +1,11 @@
 package main
 
-import "test-go/leetcode"
+import (
+	"fmt"
+	"test-go/leetcode"
+)
 
 func main() {
-	leetcode.MinCapability([]int{4, 22, 11, 14, 25}, 3)
+	result := leetcode.RepairCars([]int{4, 2, 3, 1}, 10)
+	fmt.Println(result)
 }

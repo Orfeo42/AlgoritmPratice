@@ -4,36 +4,36 @@ import "math"
 
 func MinCapability(nums []int, k int) int {
 	if k == 1 {
-		return min(nums)
+		return minFromArray(nums)
 	}
 	lenToTest := len(nums) - ((k - 1) * 2)
-	mins := make([]int, lenToTest)
+	minimi := make([]int, lenToTest)
 	for i := 0; i < lenToTest; i++ {
-		mins[i] = math.MaxInt
+		minimi[i] = math.MaxInt
 		for j := range k {
 			nextIndex := i + (j+1)*2
 			if nextIndex >= len(nums) {
 				break
 			}
-			if mins[i] > nums[nextIndex] {
-				mins[i] = nums[nextIndex]
+			if minimi[i] > nums[nextIndex] {
+				minimi[i] = nums[nextIndex]
 			}
 		}
 	}
-	for i := 0; i < len(mins); i++ {
-		if mins[i] == math.MaxInt {
-			mins[i] = nums[i]
+	for i := 0; i < len(minimi); i++ {
+		if minimi[i] == math.MaxInt {
+			minimi[i] = nums[i]
 			continue
 		}
 
-		if mins[i] < nums[i] {
-			mins[i] = nums[i]
+		if minimi[i] < nums[i] {
+			minimi[i] = nums[i]
 		}
 	}
-	return min(mins)
+	return minFromArray(minimi)
 }
 
-func min(memo []int) int {
+func minFromArray(memo []int) int {
 	result := math.MaxInt
 	for _, num := range memo {
 		if num < result {
