@@ -2,6 +2,8 @@ package leetcode
 
 import "math"
 
+//https://leetcode.com/problems/house-robber-iv
+
 func MinCapability(nums []int, k int) int {
 	if k == 1 {
 		return minFromArray(nums)

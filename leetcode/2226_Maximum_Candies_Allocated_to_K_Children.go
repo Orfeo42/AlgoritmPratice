@@ -2,6 +2,8 @@ package leetcode
 
 import "math"
 
+//https://leetcode.com/problems/maximum-candies-allocated-to-k-children
+
 func MaximumCandies(candies []int, k int64) int {
 	vals := values(candies)
 	if k == 1 {
