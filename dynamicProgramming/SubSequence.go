@@ -23,7 +23,6 @@ func reconstructSubString(memo [][]int, a, b string) string {
 	for i >= 0 && j >= 0 {
 		if a[i] == b[j] {
 			result = string(a[i]) + result
-
 			i--
 			j--
 			continue
