@@ -1,8 +1,7 @@
 package main
 
+import "test-go/leetcode"
+
 func main() {
-	/*result := dynamicProgramming.LongestCommonSubsequence("Pippo", "Pippo")
-	fmt.Println(result)
-	result2 := dynamicProgramming.LongestCommonSubToString("Pippo", "Pippo")
-	fmt.Println(result2)*/
+	leetcode.MinCapability([]int{4, 22, 11, 14, 25}, 3)
 }
