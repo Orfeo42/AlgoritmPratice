@@ -2,7 +2,7 @@ package leetcode
 
 import "sort"
 
-//https://leetcode.com/problems/4sum/description/
+//https://leetcode.com/problems/4sum
 
 func FourSum(nums []int, target int) [][]int {
 	var result [][]int
