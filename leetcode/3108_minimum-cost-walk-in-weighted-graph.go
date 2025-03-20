@@ -1,7 +1,5 @@
 package leetcode
 
-import "fmt"
-
 //https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 
 type Edge struct {
@@ -29,8 +27,27 @@ func MinimumCost(n int, edges [][]int, query [][]int) []int {
 			Target: e[0],
 		})
 	}
+	var result []int
 
-	fmt.Println(graph)
-	return []int{}
+	for _, q := range query {
+		if _, exists := graph[q[0]]; !exists {
+			result = append(result, -1)
+			continue
+		}
+		if _, exists := graph[q[1]]; !exists {
+			result = append(result, -1)
+			continue
+		}
+		/*links := graph[q[0]]
+		minLength := math.MaxInt
+		for _, l := range links {
+			length := math.MaxInt
+
+		}*/
+
+		result = append(result, 1)
+	}
+
+	return result
 
 }
