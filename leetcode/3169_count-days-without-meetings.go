@@ -2,7 +2,7 @@ package leetcode
 
 import "sort"
 
-https: //leetcode.com/problems/count-days-without-meetings/
+//https: //leetcode.com/problems/count-days-without-meetings/
 
 func CountDays(days int, meetings [][]int) int {
 	sort.Slice(meetings, func(i, j int) bool {
