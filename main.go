@@ -1,31 +1,7 @@
 package main
 
-import "fmt"
+import "test-go/leetcode"
 
-func main() {}
-func countDays(days int, meetings [][]int) int {
-	groups := [][]int{{meetings[0][0], meetings[0][1]}}
-
-	for i := 1; i < len(meetings); i++ {
-		val := meetings[i]
-		added := false
-		for _, group := range groups {
-			if val[0] < group[1] {
-				if val[0] < group[0] {
-					group[0] = val[0]
-				}
-				if val[1] > group[1] {
-					group[1] = val[1]
-				}
-				added = true
-				break
-			}
-		}
-		if !added {
-			groups = append(groups, []int{val[0], val[1]})
-		}
-
-	}
-	fmt.Println(groups)
-	return 0
+func main() {
+	leetcode.CheckValidCuts(5, [][]int{{1, 0, 5, 2}, {0, 2, 2, 4}, {3, 2, 5, 3}, {0, 4, 4, 5}})
 }
