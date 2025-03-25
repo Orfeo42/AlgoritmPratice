@@ -2,62 +2,47 @@ package leetcode
 
 import (
 	"fmt"
-	"sort"
+	"slices"
 )
 
 // https://leetcode.com/problems/check-if-grid-can-be-cut-into-sections
 
-func CheckValidCuts(n int, rectangles [][]int) bool {
-	fmt.Println(GroupX(rectangles))
-	return false
+type rectSize struct{ start, end int }
+
+func checkValidCuts(n int, rectangles [][]int) bool {
+    x := make([]rectSize, len(rectangles))
+    y := make([]rectSize, len(rectangles))
+    for i, rec := range rectangles {
+        x[i] = rectSize{rec[0], rec[2]}
+        y[i] = rectSize{rec[1], rec[3]}
+    }
+
+	return check(x) || check(y)
 }
 
-func GroupX(rectangles [][]int) [][]int {
-	sort.Slice(rectangles, func(i, j int) bool {
-		return rectangles[i][0] < rectangles[j][0]
+func check(rectangles []rectSize) bool {
+	slices.SortFunc(rectangles, func(a, b rectSize) int {
+		return a.start - b.start
 	})
-	var group [][]int
 
-	for _, rectangle := range rectangles {
-		if len(group) == 0 {
-			group = append(group, []int{rectangle[0], rectangle[2]})
-			continue
+	rectCount := 0
+	top := 0
+	for _, ret := range rectangles {
+		if ret.start >= top {
+			rectCount++
 		}
-		if rectangle[2] <= group[len(group)-1][1] {
-			//rettangolo nella stessa area di x di un altro
-			continue
+		if rectCount > 2 {
+			return true
 		}
-		if rectangle[0] < group[len(group)-1][1] {
-			//SE il rettangolo inizia nella stessa area x ma non alla fine prendo il più "ALTO"
-			group[len(group)-1][1] = maxInt(rectangle[2], group[len(group)-1][1])
-			continue
-		}
-		//group[len(group)-1][1] = maxInt(group[len(group)-1][1], rectangle[2])
+		top = maxInt(top, ret.end)
 	}
-	return group
+	return rectCount > 2
 }
 
-func GroupY(rectangles [][]int) [][]int {
-	sort.Slice(rectangles, func(i, j int) bool {
-		return rectangles[i][1] < rectangles[j][1]
-	})
-	var group [][]int
 
-	for _, rectangle := range rectangles {
-		if len(group) == 0 {
-			group = append(group, []int{rectangle[1], rectangle[3]})
-			continue
-		}
-		if rectangle[3] <= group[len(group)-1][1] {
-			//rettangolo nella stessa area di x di un altro
-			continue
-		}
-		if rectangle[1] < group[len(group)-1][1] {
-			//SE il rettangolo inizia nella stessa area x ma non alla fine prendo il più "ALTO"
-			group[len(group)-1][1] = maxInt(rectangle[3], group[len(group)-1][1])
-			continue
-		}
-		//group[len(group)-1][1] = maxInt(group[len(group)-1][1], rectangle[3])
+func maxInt(n1, n2 int) int {
+	if n1 > n2 {
+		return n1
 	}
-	return group
+	return n2
 }
