@@ -1,7 +1,6 @@
 package leetcode
 
 import (
-	"fmt"
 	"slices"
 )
 
@@ -10,12 +9,12 @@ import (
 type rectSize struct{ start, end int }
 
 func checkValidCuts(n int, rectangles [][]int) bool {
-    x := make([]rectSize, len(rectangles))
-    y := make([]rectSize, len(rectangles))
-    for i, rec := range rectangles {
-        x[i] = rectSize{rec[0], rec[2]}
-        y[i] = rectSize{rec[1], rec[3]}
-    }
+	x := make([]rectSize, len(rectangles))
+	y := make([]rectSize, len(rectangles))
+	for i, rec := range rectangles {
+		x[i] = rectSize{rec[0], rec[2]}
+		y[i] = rectSize{rec[1], rec[3]}
+	}
 
 	return check(x) || check(y)
 }
@@ -36,13 +35,5 @@ func check(rectangles []rectSize) bool {
 		}
 		top = maxInt(top, ret.end)
 	}
-	return rectCount > 2
-}
-
-
-func maxInt(n1, n2 int) int {
-	if n1 > n2 {
-		return n1
-	}
-	return n2
+	return false
 }
