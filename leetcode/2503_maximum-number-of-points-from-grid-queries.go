@@ -1,4 +1,11 @@
-pakage leetcode
+package leetcode
+
+//https://leetcode.com/problems/maximum-number-of-points-from-grid-queries
+
+import (
+	"container/heap"
+	"sort"
+)
 
 type Cell struct {
 	val, x, y int
