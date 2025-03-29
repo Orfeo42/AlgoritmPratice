@@ -62,7 +62,7 @@ func maximumScore(nums []int, k int) int {
 		k -= count
 
 		tmpRes := pow(nums[i], count)
-		response *= int(tmpRes)
+		response *= tmpRes
 		response %= module
 	}
 	return response
