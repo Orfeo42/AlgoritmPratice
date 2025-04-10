@@ -38,7 +38,7 @@ func getAvailNum(num int64, limit int64) int64 {
 	div := int64(math.Pow(10, float64(digits)))
 	res := int64(0)
 	for i := digits; i >= 0; i-- {
-		d := int64(num / div)
+		d := num / div
 		if d > limit {
 			return res + int64(math.Pow(float64(limit+1), float64(i+1)))
 		}
