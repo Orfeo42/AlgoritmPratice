@@ -1,63 +1,50 @@
 package leetcode
 
 import (
+	"math"
 	"strconv"
 )
 
-//https://leetcode.com/problems/count-the-number-of-powerful-integers
-
-func numberOfPowerfulInt(start int64, finish int64, limit int, suffix string) int64 {
-	countValid := func(num int64, limit int, suffix string) int64 {
-		suffixNum, err := strconv.ParseInt(suffix, 10, 64)
-		if err != nil {
-			return 0
-		}
-		if num < suffixNum {
-			return 0
-		}
-		numStr := strconv.FormatInt(num, 10)
-		dp := make([][]*int64, len(numStr))
-		for i := range dp {
-			dp[i] = make([]*int64, 2)
-		}
-		var dfs func(idx int, tight bool) int64
-		dfs = func(idx int, tight bool) int64 {
-			if idx == len(numStr) {
-				return 1
-			}
-			tightVal := 0
-			if tight {
-				tightVal = 1
-			}
-			if dp[idx][tightVal] != nil {
-				return *dp[idx][tightVal]
-			}
-
-			var res int64 = 0
-			maxDigit := 9
-			if tight {
-				maxDigit = int(numStr[idx] - '0')
-			}
-
-			suffixStart := len(numStr) - len(suffix)
-			if idx >= suffixStart {
-				suffixIdx := idx - suffixStart
-				digit := int(suffix[suffixIdx] - '0')
-				if digit <= maxDigit && digit <= limit {
-					res += dfs(idx+1, tight && digit == maxDigit)
-				}
-			} else {
-				for d := 0; d <= min(maxDigit, limit); d++ {
-					res += dfs(idx+1, tight && d == maxDigit)
-				}
-			}
-			dp[idx][tightVal] = &res
-			return res
-		}
-		return dfs(0, true)
+// https://leetcode.com/problems/count-the-number-of-powerful-integers
+func numberOfPowerfulInt(start int64, finish int64, limit int, s string) int64 {
+	suffix, _ := strconv.ParseInt(s, 10, 64)
+	lenS := len(s)
+	if suffix > finish {
+		return 0
 	}
+	div := int64(math.Pow(10, float64(lenS)))
+	ps := start / div
+	pf := finish / div
+	if finish%div >= suffix {
+		pf++
+	}
+	if start%div > suffix {
+		ps++
+	}
+	return getAvailNum(pf, int64(limit)) - getAvailNum(ps, int64(limit))
+}
 
-	countToFinish := countValid(finish, limit, suffix)
-	countToStart := countValid(start-1, limit, suffix)
-	return countToFinish - countToStart
+func getAvailNum(num int64, limit int64) int64 {
+	if num == 0 {
+		return 0
+	}
+	if limit == 9 {
+		return num
+	}
+	digits := 0
+	if num > 0 {
+		digits = int(math.Log10(float64(num)))
+	}
+	div := int64(math.Pow(10, float64(digits)))
+	res := int64(0)
+	for i := digits; i >= 0; i-- {
+		d := int64(num / div)
+		if d > limit {
+			return res + int64(math.Pow(float64(limit+1), float64(i+1)))
+		}
+		res += d * int64(math.Pow(float64(limit+1), float64(i)))
+		num %= div
+		div /= 10
+	}
+	return res
 }
