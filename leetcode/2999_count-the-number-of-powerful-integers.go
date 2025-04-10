@@ -6,6 +6,7 @@ import (
 )
 
 // https://leetcode.com/problems/count-the-number-of-powerful-integers
+
 func numberOfPowerfulInt(start int64, finish int64, limit int, s string) int64 {
 	suffix, _ := strconv.ParseInt(s, 10, 64)
 	lenS := len(s)
