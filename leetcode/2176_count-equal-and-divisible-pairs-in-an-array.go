@@ -6,6 +6,14 @@ func countPairs(nums []int, k int) int {
 	l := len(nums)
 	res := 0
 	for i, num := range nums {
+		if i%k == 0 {
+			for j := i + 1; j < l; j++ {
+				if num == nums[j] {
+					res++
+				}
+			}
+			continue
+		}
 		for j := i + 1; j < l; j++ {
 			if num != nums[j] {
 				continue
